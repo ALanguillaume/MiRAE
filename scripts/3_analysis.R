@@ -1,9 +1,13 @@
 ##### Minimal Reproducible Analysis Example
-##### 2 - analysis
+##### 3 - analysis
+
+library(tidyverse)
+library(readxl)
+library(emmeans)
 
 ##### Load data ------------------------------------------------------------------------------------
 
-d <- read_excel(here("./data/processed/fertilizer_trial_WUR.xlsx"),
+d <- read_excel("./data/processed/fertilizer_trial_WUR.xlsx",
                 sheet = "data")
 # Replace unit separator $ => _
 # $ is not a syntactic character in R
@@ -11,36 +15,53 @@ names(d) <- str_replace_all(names(d), "\\$", "_")
 
 ##### Analysis -------------------------------------------------------------------------------------
 
+## Simple summary graph
+summary_plot <- ggplot(d)+ # initialize graph
+  aes(x = fertilizer, y = yield_tha, colour = farm)+ # define relation between graph properties and variables
+  geom_point(na.rm = TRUE)+ # define plot type, here scatter plot
+  facet_wrap(farm ~ .)+ # allow faceting => each farm corresponds to one pane
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+ # rotate axis labels
+  ylim(0, 15)+ # set y axis limits
+  ggtitle("Summary plot") # add title
 
-ggplot(d)+
-  aes(x = fertilizer, y = yield_tha, colour = farm)+
-  geom_point(na.rm = TRUE)+
-  facet_wrap(farm ~ .)+
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
-  ylim(0, 15)
+# Display the summary plot
+summary_plot
+
+# Save the summary plot
+ggsave(filename = "./results/figures/summary_plot.png",
+       plot = summary_plot)
 
 
-interaction_plot(x.factor = farm,
-                 trace.factor = fertilizer,
-                 response = yield_tha,
-                 data = d)+
-  ylim(0, 15)
-
-
+## Fit a simple linear model
 fit <- lm(yield_tha ~ farm + fertilizer, data = d)
-fit %>% pretty_anova_table()
 
+## Get an ANOVA table
+anova(fit)
 
-emms <- emmeans(fit,  pairwise ~  farm + fertilizer)
+## Calculate Estimated Marginal Means, aka adjusted means:
+## These are the mean yield for each combination of farm and fertilizer
+## as the model predicts them.
+emms <- emmeans(fit, ~  farm + fertilizer)
 
-emms_df <- as.data.frame(emms$emmeans)
+## Fancy graph: combining raw data and adjusted means and their corresponding
+## confidence interval
 
-ggplot(d)+
-  aes(x = fertilizer, y = yield_tha, colour = farm)+
+emms_df <- as.data.frame(emms)
+
+emms_plot <- ggplot(d)+
+  aes(x = fertilizer, y = yield_tha, colour = farm)+ # raw data
   geom_point(na.rm = TRUE,
              position = position_dodge(width = 0.2),
              alpha = 0.2)+
-  geom_pointrange(data = emms_df,
+  geom_pointrange(data = emms_df, # Estimated Marginal Means
                   aes(y = emmean, ymin = lower.CL, ymax = upper.CL),
                   position = position_dodge(width = 0.2))+
-  ylim(0, 15)
+  ylim(0, 15)+
+  ggtitle("Estimated Marginal Means")
+
+# Display emms plots
+emms_plot
+
+# Save the fancy plot
+ggsave(filename = "./results/figures/emms_plot.png",
+       plot = emms_plot)

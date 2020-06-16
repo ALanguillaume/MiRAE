@@ -48,17 +48,18 @@ d$yield[id_NA] <- NA
 
 ## Delete accent or special characters in fertilizer names
 # here I simply overwrite an existing variable
-d$fertilizer <-  d$fertilizer %>%
-  # escaping the weird character to unicode representation
-  stringi::stri_escape_unicode() %>%
-  # replace the unicode representation by "e" yielding "Efficiencie"
-  str_replace("\\\\u00c3\\\\u0192\\\\u00c2\\\\u00ab", "e")
+
+# escaping the weird character to unicode representation
+d$fertilizer <- stringi::stri_escape_unicode(d$fertilizer)
+
+# replace the unicode representation by "e" yielding "Efficiencie"
+d$fertilizer <- str_replace(d$fertilizer, "\\\\u00c3\\\\u0192\\\\u00c2\\\\u00ab", "e")
 
 ## Convert yield in ton per ha (tha),
 # here I use dplyr::mutate as an example
 d <- d %>%
   mutate(`yield$tha` = as.numeric(yield) / 10) %>%
-  select(-yield) # get rif of initial yield column
+  select(-yield) # get rid of initial yield column
 
 
 ##### Setup final workbook (data + metadata + variable definition) ---------------------------------

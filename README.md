@@ -1,6 +1,8 @@
 MiRAE: Minimal Reproducible Analysis Example
 ================
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ALanguillaume/MiRAE/master?urlpath=rstudio)
+
 ## Purpose
 
 This repository contains code for a Minimal Reproducible Analysis
@@ -18,18 +20,21 @@ details to be added…
     ## |   \-- raw
     ## |       +-- Meststof proef WUR.csv
     ## |       \-- Meststof proef WUR_metadata.xlsx
+    ## +-- install.R
     ## +-- MiRA.Rproj
     ## +-- README.md
     ## +-- README.Rmd
-    ## +-- report
-    ## |   +-- MiRAE_report.pdf
-    ## |   +-- MiRAE_report.Rmd
-    ## |   \-- MiRAE_report.tex
-    ## \-- scripts
-    ##     +-- 0_build_project.R
-    ##     +-- 1_simulate_exp_data.R
-    ##     +-- 2_data_cleaning.R
-    ##     \-- MiRAE_funcs.R
+    ## +-- results
+    ## |   +-- figures
+    ## |   \-- tables
+    ## +-- runtime.txt
+    ## +-- scripts
+    ## |   +-- 0_build_project.R
+    ## |   +-- 1_simulate_exp_data.R
+    ## |   +-- 2_data_cleaning.R
+    ## |   +-- 3_analysis.R
+    ## |   \-- MiRAE_funcs.R
+    ## \-- writings
 
 ## Try it yourself
 

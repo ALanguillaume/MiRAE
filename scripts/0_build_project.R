@@ -2,9 +2,8 @@
 ##### 0 - build project
 
 
-# Install required packages if necessary
-required_packages <- c("tidyverse", "readxl", "openxlsx",
-                       "car", "emmeans", "broom")
+### Install required packages if necessary
+required_packages <- c("tidyverse", "readxl", "openxlsx", "emmeans")
 
 for (package in required_packages) {
   if(package %in% rownames(installed.packages()) == FALSE){
@@ -12,12 +11,10 @@ for (package in required_packages) {
   }
 }
 
-# Run all scripts in the correct order
-all_scripts <- list.files("./scripts", full.names = TRUE)
+### Run all scripts in the correct order
 
+all_scripts <- list.files("./scripts", full.names = TRUE)
 target_scripts <- all_scripts[grep("[1-9]", all_scripts)]
 
 for(script in target_scripts) source(script, local = TRUE)
 
-# Build the final report
-rmarkdown::render("./report/MiRAE_report.Rmd")
