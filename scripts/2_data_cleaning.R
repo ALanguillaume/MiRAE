@@ -52,7 +52,7 @@ d$fertilizer <-  d$fertilizer %>%
   # escaping the weird character to unicode representation
   stringi::stri_escape_unicode() %>%
   # replace the unicode representation by "e" yielding "Efficiencie"
-  str_replace("\\\\u00c3\\\\u00ab", "e")
+  str_replace("\\\\u00c3\\\\u0192\\\\u00c2\\\\u00ab", "e")
 
 ## Convert yield in ton per ha (tha),
 # here I use dplyr::mutate as an example

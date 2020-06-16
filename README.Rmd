@@ -25,7 +25,16 @@ fs::dir_tree(here("."))
 
 Please download the project and poke around ! It is very simple to do so.
 
-You simply need to have __Git__ installed on your computer. You can do that manually (https://git-scm.com/downloads) or via the WUR available software interface.
+### Required software
+
+You need to have the following software installed on your computer:
+
+* [Git](https://git-scm.com/downloads)
+* a Latex distribution such as [Miktex](https://miktex.org/download) on windows or [TexLive](https://www.tug.org/texlive/acquire-netinstall.html) on Mac OS.
+
+Git and Miktex are also both available on WUR - Available Software.
+
+### Ready to go ?
 
 Just click on the green button above __"Clone or download"__ and copy the repo url, then...
 
