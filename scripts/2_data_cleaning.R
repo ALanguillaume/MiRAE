@@ -1,6 +1,7 @@
 ##### Minimal Reproducible Analysis Example
 ##### 2 - data cleaning
 
+
 library(tidyverse)
 library(readxl)
 library(openxlsx)
@@ -85,7 +86,7 @@ definition <- c(field_id = "unique field identifier",
                 farm = "name of the farm where the experiment was performed")
 ## Turn definition into a proper data.frame
 definition <- definition %>%
-  data.frame(definition = .) %>%
+  data.frame(definition = ., stringsAsFactors = FALSE) %>%
   rownames_to_column("variable")
 
 ## Update variable definition data.frame
