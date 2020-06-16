@@ -16,6 +16,13 @@ for (package in required_packages) {
 all_scripts <- list.files("./scripts", full.names = TRUE)
 target_scripts <- all_scripts[grep("[1-9]", all_scripts)]
 
-suppressPackageStartupMessages(
-  for(script in target_scripts) source(script, local = TRUE)
+suppressPackageStartupMessages( # This is not to scare you with a lot of...
+  suppressMessages( # weird information pouring out of the console
+    {
+      for(script in target_scripts) {
+        source(script, local = TRUE)
+      }
+      print("Analysis succesfully run !")
+    }
+  )
 )

@@ -27,7 +27,7 @@ metadata <- read_excel("./data/raw/Meststof proef WUR_metadata.xlsx")
 ##### Clean data -----------------------------------------------------------------------------------
 
 ## Inspect data
-str(d)
+# str(d)
 # Here we can see that:
 # - Opbrengst.Maïs: has multiple place holders for missing values
 # - Boederij: some farm names are not properly capitalized
@@ -86,8 +86,10 @@ definition <- c(field_id = "unique field identifier",
                 farm = "name of the farm where the experiment was performed")
 ## Turn definition into a proper data.frame
 definition <- definition %>%
-  data.frame(definition = ., stringsAsFactors = FALSE) %>%
+  data.frame(definition = . ) %>%
   rownames_to_column("variable")
+# make sure variable is plain text not a factor
+definition$variable <- as.character(definition$variable)
 
 ## Update variable definition data.frame
 variable_definition <- inner_join(variable_definition,
