@@ -1,0 +1,51 @@
+---
+title: "MiRAE: Minimal Reproducible Analysis Example"
+output: github_document
+---
+
+
+```{r setup, include=FALSE}
+library(here)
+library(fs)
+```
+
+## Purpose
+
+This repository contains code for a Minimal Reproducible Analysis Example (MiRAE). This was developed as a minimal example of what an R project compliant to the PPS data management plan should look like.
+
+## Project Structure
+
+details to be added...
+
+```{r, echo = FALSE}
+fs::dir_tree(here("."))
+```
+
+## Try it yourself
+
+Please download the project and poke around ! It is very simple to do so.
+
+You simply need to have __Git__ installed on your computer. You can do that manually (https://git-scm.com/downloads) or via the WUR available software interface.
+
+Just click on the green button above __"Clone or download"__ and copy the repo url, then...
+
+### Using Rstudio
+
+* Go to File > New Project... > Version Control > Git, then paste the repo url in the field _Repository url:_.
+* Tell Rstudio where you want the project to be clone on our computer in _Project directory name:_.
+* When you are ready just click on __Create Project__ and the project will be automatically downloaded on your computer and open in an RStudio session. 
+
+
+### Using Git directly
+
+Go to the location where you want to clone the project, then right click on a blank area and select _Git Bash Here_.
+A Bash terminal will open. Then type:
+
+```{bash, eval=FALSE}
+git clone https://github.com/ALanguillaume/MiRAE.git
+```
+
+
+
+
+
