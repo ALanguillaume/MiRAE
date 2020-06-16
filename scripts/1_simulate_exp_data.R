@@ -69,5 +69,7 @@ names(d)[grep("treat", names(d))] <- "Type Meststof"
 names(d)[grep("blk", names(d))] <- "Boederij"
 
 
-write_csv(d,
-          path = "./data/raw/Meststof proef WUR.csv")
+write.csv(d,
+          row.names = FALSE,
+          file = "./data/raw/Meststof proef WUR.csv",
+          fileEncoding = "UTF-8")
