@@ -58,8 +58,8 @@ d$blk[id_to_lower] <- tolower(d$blk[id_to_lower])
 
 # Give fertilizer proper names
 d$treat <- dplyr::case_when(d$treat == 1 ~ "SuperDash",
-                     d$treat == 2 ~ "Miracle",
-                     d$treat == 3 ~ "Efficiëntie")
+                            d$treat == 2 ~ "Miracle",
+                            d$treat == 3 ~ "Efficiëntie")
 # This Efficiëntie will cause an encoding issue we will
 # solve upon cleaning the data
 
