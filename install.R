@@ -1,0 +1,6 @@
+install.packages("tidyverse")
+install.packages("readxl")
+install.packages("openxlsx")
+install.packages("car")
+install.packages("emmeans")
+install.packages("broom")

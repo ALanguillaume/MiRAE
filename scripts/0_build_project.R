@@ -4,7 +4,7 @@
 
 # Install required packages if necessary
 required_packages <- c("tidyverse", "readxl", "openxlsx",
-                       "car", "emmeans", "broom", "knitr")
+                       "car", "emmeans", "broom")
 
 for (package in required_packages) {
   if(package %in% rownames(installed.packages()) == FALSE){
