@@ -2,7 +2,7 @@
 title: "PPS - Minimal Reproducible Analysis Example"
 author: "Antoine Languillaume"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
-output: pdf_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
@@ -45,7 +45,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendi
 
 You can directly incorporate your graphs within your memo or manuscript draft.
 
-```{r, fig.align='center', fig.dim=c(6,4)}
+```{r, fig.align='center'}
 ggplot(d)+
   aes(x = fertilizer, y = yield_tha, colour = farm)+
   geom_point(na.rm = TRUE)+
@@ -56,7 +56,7 @@ theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))+
 
 
 
-```{r, fig.align='center', fig.dim=c(6,3)}
+```{r, fig.align='center'}
 interaction_plot(x.factor = farm,
                  trace.factor = fertilizer,
                  response = yield_tha,
@@ -74,7 +74,7 @@ fit %>%
   knitr::kable()
 ```
 
-```{r, fig.align='center', fig.dim=c(6,4)}
+```{r, fig.align='center'}
 emms <- emmeans(fit,  pairwise ~  farm + fertilizer)
 
 emms_df <- as.data.frame(emms$emmeans)
@@ -83,10 +83,10 @@ ggplot(d)+
   aes(x = fertilizer, y = yield_tha, colour = farm)+
   geom_point(na.rm = TRUE,
              position = position_dodge(width = 0.2),
-             alpha = 0.1)+
+             alpha = 0.2)+
   geom_pointrange(data = emms_df,
                   aes(y = emmean, ymin = lower.CL, ymax = upper.CL),
-                  position = position_dodge(width = 0.2), size = 0.2)+
+                  position = position_dodge(width = 0.2))+
   ylim(0, 15)
 ```
 
