@@ -1,5 +1,5 @@
 ##### Minimal Reproducible Analysis Example
-##### 2 - data cleaning
+##### 1 - data cleaning
 
 
 library(tidyverse)
@@ -77,7 +77,8 @@ variable_definition <- data.frame(workbook = rep(output_worbook_name,
                                   sheet = rep(output_sheet_name,
                                               length(variables_names)),
                                   variable = variables_names,
-                                  units = variables_unit)
+                                  units = variables_unit,
+                                  stringsAsFactors = FALSE)
 
 ## Manually define variables
 definition <- c(field_id = "unique field identifier",
@@ -88,8 +89,6 @@ definition <- c(field_id = "unique field identifier",
 definition <- definition %>%
   data.frame(definition = . ) %>%
   rownames_to_column("variable")
-# make sure variable is plain text not a factor
-definition$variable <- as.character(definition$variable)
 
 ## Update variable definition data.frame
 variable_definition <- inner_join(variable_definition,
